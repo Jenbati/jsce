@@ -4,7 +4,7 @@ This project is a **Django-based academic journal website** developed for managi
 
 The system is designed to present journal volumes, articles, abstracts, and downloadable PDFs in a clean, archive-oriented structure suitable for academic institutions and researchers.
 
-🔗 **Live Website:** https://jsce.com.np/
+🔗 **Live Website:** <a href="https://jsce.com.np/">https://jsce.com.np</a>
 
 ---
 
@@ -23,10 +23,10 @@ The system is designed to present journal volumes, articles, abstracts, and down
 ## Screenshots
 
 ### Archives
-![Archives](screenshots/archives.png)
+![Archives]( <img src="screenshots/archives.png" width="800" />)
 
 ### Issue
-![Issue](screenshots/issue.png)
+![Issue]( <img src="screenshots/issue.png" width="800" /> )
 
 ### Article
-![Article](screenshots/article.png)
+![Article]( <img src="screenshots/article.png" width="800" />)
