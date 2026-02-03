@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+{% load author_filters %}
+
+{% block title %}JScE Volume {{ issue.number }} – {{ issue.date|date:"F Y" }}{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="mb-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light px-4 py-3 rounded" style="border-left: 5px solid #00539c;">
+      {% for item in breadcrumbs %}
+        {% if item.url %}
+          <li class="breadcrumb-item">
+            <a href="{% url item.url %}" class="text-decoration-none text-primary">{{ item.label }}</a>
+          </li>
+        {% else %}
+          <li class="breadcrumb-item active fw-semibold text-primary" aria-current="page">
+            {{ item.label }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+
+<!-- Volume Header -->
+<h2 class="mb-4 text-primary">JScE Volume {{ volume.number }} ({{ volume.date|date:"F Y" }})</h2>
+
+<!-- Article List -->
+<div class="list-group">
+  {% for article in article_list %}
+    <div class="list-group-item bg-white border shadow-sm rounded mb-3 p-3">
+      <div class="d-flex justify-content-between align-items-start">
+
+        <!-- Article title and authors -->
+        <div class="flex-grow-1 pe-3">
+          <h5 class="mb-2">
+            <a href="{% url 'article_detail' article.pk %}" class="text-decoration-none text-dark">
+              {{ article.title }}
+            </a>
+            {% if article.pdf %}
+              <a href="{{ article.pdf.url }}" target="_blank" class="ms-2 text-danger" title="Download PDF">
+                <i class="bi bi-file-earmark-pdf-fill fs-5"></i>
+              </a>
+            {% endif %}
+          </h5>
+          <p class="mb-0 small text-muted fst-italic">– {{ article.authors|author_names_only }}</p>
+        </div>
+
+        <!-- Page Number Right-Aligned -->
+        <div class="text-end ms-auto ps-3" style="min-width: 100px;">
+          <span class="fw-semibold text-secondary">
+            {{ article.page_start|stringformat:"02d" }} – {{ article.page_end|stringformat:"02d" }}
+          </span>
+        </div>
+
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No articles found in this volume.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

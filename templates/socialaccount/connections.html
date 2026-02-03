@@ -1,0 +1,50 @@
+{% extends "account/base_manage.html" %}
+{% load i18n allauth %}
+
+{% block head_title %}
+    {% trans "Account Connections" %}
+{% endblock head_title %}
+
+{% block content %}
+<h2 class="mb-4">{% trans "Account Connections" %}</h2>
+
+{% if form.accounts %}
+    <p>{% trans "You can sign in to your account using any of the following third-party accounts:" %}</p>
+
+    <form method="post" action="{% url 'socialaccount_connections' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            {% for acc in form.fields.account.choices %}
+                {% with account=acc.0.instance.get_provider_account %}
+                    <div class="form-check">
+                        <input 
+                            class="form-check-input" 
+                            type="radio" 
+                            name="account" 
+                            id="account_{{ account.account.pk }}" 
+                            value="{{ account.account.pk }}"
+                            {% if acc.1 %}checked{% endif %}
+                        >
+                        <label class="form-check-label" for="account_{{ account.account.pk }}">
+                            {{ account }}
+                            <span class="badge bg-secondary ms-2">{{ account.get_brand.name }}</span>
+                        </label>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+            {% trans "Remove" %}
+        </button>
+    </form>
+
+{% else %}
+    <p class="text-muted">{% trans "You currently have no third-party accounts connected to this account." %}</p>
+{% endif %}
+
+<h3 class="mt-5">{% trans "Add a Third-Party Account" %}</h3>
+
+{% include "socialaccount/snippets/provider_list.html" with process="connect" %}
+{% include "socialaccount/snippets/login_extra.html" %}
+{% endblock content %}

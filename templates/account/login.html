@@ -1,0 +1,107 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4 text-center">{% trans "Sign In" %}</h2>
+
+            {% if not SOCIALACCOUNT_ONLY %}
+                <div class="alert alert-info" role="alert">
+                    {% url 'account_signup' as signup_url %}
+                    {% blocktranslate %}
+                        If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.
+                    {% endblocktranslate %}
+                </div>
+
+                {% url 'account_login' as login_url %}
+                <form method="post" action="{{ login_url }}" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    {{ redirect_field }}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% for field in form %}
+                        {% if field.name != "remember" %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-danger small">
+                                        {{ field.errors|striptags }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- ✅ Add the Remember Me checkbox here -->
+                    <div class="form-check mb-3">
+                        {{ form.remember }}
+                        {{ form.remember.label_tag }}
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        {% trans "Sign In" %}
+                    </button>
+
+                    {# 🔗 Forgot Password link #}
+                    <div class="text-center mt-3">
+                        <a href="{% url 'account_reset_password' %}" class="text-decoration-none">
+                            {% trans "Forgot your password?" %}
+                        </a>
+                    </div>
+                </form>
+            {% endif %}
+
+            {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+             
+                <div class="d-grid gap-2">
+                    {% if PASSKEY_LOGIN_ENABLED %}
+                        <button type="submit" form="mfa_login" id="passkey_login" class="btn btn-outline-primary">
+                            {% trans "Sign in with a passkey" %}
+                        </button>
+                    {% endif %}
+                    {% if LOGIN_BY_CODE_ENABLED %}
+                        <a href="{{ request_login_code_url }}" class="btn btn-outline-primary">
+                            {% trans "Send me a sign-in code" %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% load socialaccount %}
+                {% if SOCIALACCOUNT_ENABLED %}
+                    <div class="text-center mt-4">
+                        <a href="{% provider_login_url 'google' process='login' %}" class="btn btn-outline-dark d-inline-flex align-items-center gap-2 shadow-sm px-4 py-2">
+                            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" style="width:20px; height:20px;">
+                            Continue with Google
+                        </a>
+                    </div>
+                {% endif %}
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_body %}
+    {{ block.super }}
+    {% if PASSKEY_LOGIN_ENABLED %}
+        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+    {% endif %}
+{% endblock %}

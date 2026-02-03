@@ -1,0 +1,22 @@
+{% extends "account/base_manage.html" %}
+{% load i18n allauth account %}
+
+{% block head_title %}
+    {% trans "Sign Out" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="mb-4">{% trans "Sign Out" %}</h2>
+    <p class="lead mb-4">{% trans "Are you sure you want to sign out?" %}</p>
+
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {{ redirect_field }}
+        <div class="d-grid gap-2 d-md-inline-block">
+            <button type="submit" class="btn btn-danger">{% trans "Sign Out" %}</button>
+            <a href="{% url 'account_email' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

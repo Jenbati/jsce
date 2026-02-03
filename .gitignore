@@ -1,0 +1,20 @@
+# Python
+*.pyc
+__pycache__
+*~$
+*.sage.py
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+/media
+/static
+
+# Virtualenv
+/venv
+/env
+
+# Operating System
+.DS_Store
+.env

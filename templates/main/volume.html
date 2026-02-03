@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+{% block title %}JScE Volume{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+  <div class="p-4 mb-4 rounded" style="background: #e9f2fa; border-left: 5px solid #00539c;">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+      {% for item in breadcrumbs %}
+        {% if item.url %}
+          <li class="breadcrumb-item">
+              <a href="{% url item.url %}">{{ item.label }}</a>
+          </li>
+        {% else %}
+          <li class="breadcrumb-item active text-primary fw-bold" aria-current="page">
+            {{ item.label }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+
+<div class="row">
+  {% for volume in volume_list %}
+  <div class="col-md-6">
+    <div class="card mb-4 flex-row">
+      {% if volume.cover_image %}
+        <img src="{{ volume.cover_image.url }}" alt="Cover" class="img-fluid" style="width: 150px; object-fit: cover;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">Volume {{ volume.number }}</h5>
+        <p class="card-text">{{ volume.date|date:"F Y" }}</p>
+        <a href="{% url 'article_list' volume.number %}" class="btn btn-primary">View Issue</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+{% endblock %}

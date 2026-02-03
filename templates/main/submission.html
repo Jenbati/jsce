@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Manuscript Submission – JScE{% endblock %}
+
+{% block content %}
+<div class="submission-page">
+
+  <div class="text-center mb-5">
+    <h2>Manuscript Submission Guidelines</h2>
+    <p class="lead">Welcome to the Journal of Science & Engineering (JScE) submission portal. Please follow the instructions below.</p>
+  </div>
+
+  <div class="text-center mt-4 mb-4">
+    <a href="{% static 'files/Instructions_to_Authors.pdf' %}" class="button" target="_blank">Full Instructions to Authors &raquo;</a>
+  </div>
+
+  <!-- Step 1: Prepare Your Manuscript -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title">Step 1. Prepare Your Manuscript</h4>
+      <ol>
+        <li>Download and use our official <a href="{% static 'files/JScE_Format_new.doc' %}" target="_blank" class="text-primary" >MS Word template</a>.</li>
+        <li>Ensure the manuscript includes: Title, Abstract (< 250 words), Keywords, Introduction, Methods, Results, Discussion, Conclusion, References.</li>
+        <li>Figures must be embedded or submitted as separate high-resolution files.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Step 2: Online Submission -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title">Step 2. Online Submission</h4>
+      <p>Please prepare the following files before submitting:</p>
+      <ul>
+        <li>Main manuscript (DOCX or PDF)</li>
+        <li>High-resolution figures (JPEG, PNG, TIFF)</li>
+        <li>Supplementary materials (if any)</li>
+      </ul>
+      <a href="#" class="button mt-3">Submit Manuscript Online &raquo;</a>
+    </div>
+  </div>
+
+  <!-- Step 3: Peer Review Process -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title">Step 3. Peer Review Process</h4>
+      <p>All submissions undergo a thorough peer-review process. Estimated timeline:</p>
+      <ul>
+        <li>Initial editorial screening: 1–2 weeks</li>
+        <li>Peer review: 4–6 weeks</li>
+        <li>Decision communicated via email</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Step 4: Publication -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title">Step 4. Publication</h4>
+      <p>Accepted papers will be published online. You will receive page proofs for final approval before publication.</p>
+      <p>For inquiries, contact: <a href="mailto:editor@jsce.com.np">editor@jsce.com.np</a></p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "main/base.html" %}
+{% load reference_filters %}
+{% load author_filters %}
+
+{% block title %}{{ article_detail.title }} – JScE{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="mb-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light px-4 py-3 rounded" style="border-left: 5px solid #00539c;">
+      {% for item in breadcrumbs %}
+        {% if item.url %}
+          <li class="breadcrumb-item">
+            {% if item.args %}
+              <a href="{% url item.url item.args.0 %}">{{ item.label }}</a>
+            {% else %}
+              <a href="{% url item.url %}">{{ item.label }}</a>
+            {% endif %}
+          </li>
+        {% else %}
+          <li class="breadcrumb-item active fw-semibold text-primary" aria-current="page">
+            {{ item.label }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+
+<!-- Article Title -->
+<h2 class="mb-4">{{ article_detail.title }}</h2>
+
+<!-- Authors -->
+<div class="mb-4">
+  <h5 class="text-primary"><strong>Authors:</strong></h5>
+  <p class="text-justify">{{ article_detail.authors|bold_names_with_designation|safe }}</p>
+</div>
+
+<!-- Abstract -->
+<div class="mb-4">
+  <h5 class="text-primary"><strong>Abstract</strong></h5>
+  <p class="text-justify">{{ article_detail.abstract }}</p>
+</div>
+
+<!-- Keywords -->
+<div class="mb-3">
+  <strong>Keywords:</strong>
+  <span>{{ article_detail.keywords }}</span>
+</div>
+
+<!-- DOI -->
+<div class="mb-3">
+  <strong>DOI:</strong>
+  <a href="{{ article_detail.doi }}" target="_blank">{{ article_detail.doi }}</a>
+</div>
+
+<!-- PDF Download -->
+<div class="mb-3">
+  <strong>PDF:</strong>
+  <a href="{{ article_detail.pdf.url }}" target="_blank" class="btn btn-success btn-sm ms-2">Download PDF</a>
+</div>
+
+<!-- Page Numbers -->
+<div class="mb-4">
+  <strong>Page No.:</strong>
+  <span>{{ article_detail.page_start }} – {{ article_detail.page_end }}</span>
+</div>
+
+<!-- References -->
+<div class="mb-4">
+  <h5 class="text-primary"><strong>References:</strong></h5>
+  <div class="text-justify">
+    {{ article_detail.references|split_references|safe }}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'account/base_manage.html' %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header text-center">
+    <h3>User Profile</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
+          <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+          <li class="list-group-item"><strong>Salutation:</strong> {{ user.salutation }}</li>
+          <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
+          <li class="list-group-item"><strong>Middle Name:</strong> {{ user.middle_name }}</li>
+          <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Gender:</strong> {{ user.gender }}</li>
+          <li class="list-group-item"><strong>Phone:</strong> {{ user.phone }}</li>
+          <li class="list-group-item"><strong>Affiliation:</strong> {{ user.affiliation }}</li>
+          <li class="list-group-item"><strong>Bio:</strong> {{ user.bio }}</li>
+          <li class="list-group-item"><strong>Country:</strong> {{ user.country }}</li>
+          <li class="list-group-item"><strong>Is Author:</strong> {{ user.is_author }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 text-center">
+      <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

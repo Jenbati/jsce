@@ -1,0 +1,23 @@
+{% extends "account/base_manage.html" %}
+{% load i18n allauth %}
+
+{% block title %}
+    {% trans "Author Dashboard" %}
+{% endblock %}
+
+{% block content %}
+    {% element h1 %}
+        <h1 class="mb-0">
+            Welcome, {{ user.username|capfirst }} 
+            {% if user.groups.all %}
+                <small class="text-muted">( 
+                    {% for group in user.groups.all %}
+                        {{ group.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                )</small>
+            {% endif %}
+        </h1>
+    {% endelement %}
+
+    <p>{% trans "This is your learning dashboard. Check your courses, assignments, and profile info." %}</p>
+{% endblock content %}

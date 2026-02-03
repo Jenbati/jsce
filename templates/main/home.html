@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Home - JScE{% endblock %}
+{% block content %}
+
+<!-- About the Journal -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">About the Journal</h2>
+  <p class="text-justify">
+    <strong>Journal of Science and Engineering (JScE)</strong>, published by Khwopa Engineering College & Khwopa College of Engineering, is a regular forum for all academics and practitioners in the relevant field. The publication is an open-access peer-reviewed journal and requests articles from following three categories:
+  </p>
+  <ul>
+    <li>Research papers: Papers which precisely identify the problem and use original data/methodology and derive independent conclusion.</li>
+    <li>Expository articles: Papers which discuss problems and ideas in a discursive and elaborate manner in consistent logical sequence, and not necessarily present original data.</li>
+    <li>Reports: Papers which give detail account of events of sufficient importance utilizing existing data information.</li>
+  </ul>
+  <p class="text-justify">
+    Research papers will be evaluated by referees while expository articles and reports will be discussed in the Editorial Board and will be sent to referees of the relevant field if the board deems it necessary. JScE is sincerely grateful to academics/scholars/professionals who manage time out of their busy schedule for reviewing submitted manuscript. We request our fellow reviewers to adhere to our  <a href="{% static 'files/Guidelines_for_Reviewers.pdf' %}" target="_blank"> JScE - Guidelines for Reviewers </a> for peer-review of manuscripts.
+  </p>
+  <p class="text-justify">
+    We encourage and request all academics and practitioners in the field of science and engineering to send their valuable works and participate in this forum. For details in the Manuscript preparation, please see the attached document <a href="{% static 'files/Instructions_to_Authors.pdf' %}" target="_blank"> JScE - Instructions to Authors</a> for manuscript preparation.
+  </p>
+</section>
+
+<!-- Aim and Scope -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">Aim &amp; Scope</h2>
+  <p class="text-justify">
+    The Journal of Science and Engineering (JScE) is an open-access peer-reviewed journal to serve the interests of professionals, academics and research organizations working in the field of science and engineering. Publication of journals recording the achievements and problems in the scientific and engineering development works in the context of Nepal is yet to go long way for an established tradition. Developments in the context of other international regions are part of our knowledge, but the regional experience of Nepal and border regions with such a diversity of nature and culture is of immediate relevance. This journal is dedicated towards this direction and welcomes research works coming from all international contexts, while keeping special attention to the development experiences of Nepal. The scope of the journal incorporates natural sciences and all disciplines of engineering. The articles in the journal will be in English.
+  </p>
+</section>
+
+
+<!-- Review & Fees -->
+<section class="mb-5">
+  <h2 class="h4 mb-3">Review &amp; Fees</h2>
+  <p class="text-justify">
+    JScE uses a <strong>double-blind peer review</strong> process. <strong>No submission or publication fees</strong>. All accepted articles are published open access.
+  </p>
+</section>
+
+<!-- Contact -->
+<section>
+  <h2 class="h4 mb-3">Contact</h2>
+  <address>
+    <strong>Chief Editor</strong><br>
+    Journal of Science &amp; Engineering<br>
+    Khwopa Engineering College | Khwopa College of Engineering<br>
+    Libali, Bhaktapur‑8, Nepal<br>
+    Phone: +977‑1‑5122098 | 5122094<br>
+    Fax: +977‑1‑5122202<br>
+    Email: <a href="mailto:jsce.editor@khec.edu.np" class="text-primary">jsce.editor@khec.edu.np</a> | <a href="mailto:jsce.editor@gmail.com" class="text-primary">jsce.editor@gmail.com</a><br>
+    Website: <a href="https://jsce.com.np/" class="text-primary">jsce.com.np</a>
+  </address>
+</section>
+
+{% endblock %}
