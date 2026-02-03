@@ -23,10 +23,10 @@ The system is designed to present journal volumes, articles, abstracts, and down
 ## Screenshots
 
 ### Archives
-![Archives]( <img src="screenshots/archives.png" width="800" />)
+<img src="screenshots/archives.png" width="500" />
 
 ### Issue
-![Issue]( <img src="screenshots/issue.png" width="800" /> )
+<img src="screenshots/issue.png" width="500" />
 
 ### Article
-![Article]( <img src="screenshots/article.png" width="800" />)
+ <img src="screenshots/article.png" width="500" />
